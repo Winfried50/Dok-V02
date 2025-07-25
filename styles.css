@@ -1,0 +1,427 @@
+/*dokumentenstyles */
+/* volle Kontrolle über alle Elemente */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  }
+html {
+    font-size: 16px; /* Oder 18px, je nachdem, was Sie als Basis wünschen */
+}
+body {
+  background-color: #f4f4f4;
+  font-family: Arial;
+  font-size: 1rem;  /*Basisgröße = 16px*/
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 10px;
+}
+.kopf {
+    margin-left: 10px;
+    background-color: white;
+  }
+.menu-container {
+    position: relative; /* Wichtig für die Positionierung des Untermenüs */
+    display: inline-block; /* Damit der Container nur so breit ist wie sein Inhalt */
+}
+.menu-icon {
+    padding: 2px 15px 2px 15px;/*oben rechts unten links */
+    cursor: pointer;
+    border: none;
+    background: #007BFF;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.5rem; /* bisher 1.2 Für ein sichtbares Symbol */
+    display: block; /* Damit es eine eigene Zeile einnimmt */
+}
+.menu-icon:hover {
+    background: #0056b3;
+}
+.submenu {
+    display: none; /* Standardmäßig ausgeblendet */
+    position: absolute;
+    top: 100%; /* Unter dem Menüsymbol positionieren */
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1; /* Damit es über anderen Elementen liegt */
+    min-width: 160px; /* Mindestbreite für das Untermenü */
+}
+.submenu.show {
+    display: block; /* Anzeigen, wenn die Klasse 'show' vorhanden ist */
+}
+.submenu button {
+    display: block; /* Buttons untereinander anzeigen */
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    font-size: 1.2rem;
+    border: none;
+    background: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-bottom: 1px solid #eee; /* Trennlinie zwischen den Elementen */
+}
+.submenu button:last-child {
+    border-bottom: none; /* Keine Trennlinie für das letzte Element */
+}
+.submenu button:hover {
+    background-color: rebeccapurple;
+}
+.menu {
+  width: 100%;
+  max-width: 920px;
+  display:flex;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+}
+.menu button {
+  padding: 10px 15px;
+  margin-left: -20px 0 5px 0;
+  border: none;
+  /* ursprung background: #555; */
+  border-radius: 10px;
+  background-color: rgb(56, 133, 234);
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  justify-content: center;
+}
+.menu button:hover {
+  background: rebeccapurple;
+}
+.content.active {
+  display: block;
+}
+.content {
+  flex: 1;
+  margin-top: 3px;  /*20px*/
+  display: none;
+}
+
+/* home Filter --> Links Dokumente */
+#filter-wrapper {  /* # --> gilt für id: "filter-wrapper" */
+  /*display: grid;*/
+  display: flex;
+  /* Spalten-Definition:
+     - repeat(auto-fit, ...): Erzeugt so viele Spalten wie passen
+     - minmax(300px, 1fr): Jede Spalte ist mind. 300px breit,
+                          überschüssiger Platz wird gleichmäßig verteilt (1fr)
+     => Auf breiten Bildschirmen nebeneinander, auf schmalen untereinander */
+  /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 5px; /* Abstand zwischen den Filter-Blöcken */
+  padding: 0px; /* Optional: Abstand des Wrappers zum Rand */
+  /*width: 100%; *//*  Nimmt die verfügbare Breite ein */
+  width: 100%;
+  max-width: 1200px; /* Optional: Maximale Breite für sehr große Bildschirme */
+ /* margin: 0 auto 20px auto;  Optional: Zentriert den Wrapper und fügt Abstand unten hinzu */
+ margin: 0 100px 25px 2px;
+}
+.container {
+  /* Style für den einzelnen Filter-Block */
+margin-left: 0px;
+padding: 10px;
+border: 1px solid #ccc; 
+/*background-color: white;*/
+background-color: white;
+max-width: 100%;  /* Entfernt oder angepasst, falls nötig */
+}
+/* Style für das Label und Select innerhalb des Containers */
+.container label {
+  margin-right: 10px; /* War vorher nur für Select, evtl. anpassen */
+  /* display: block; */ /* Evtl. aus .filter-group übernehmen? */
+  /* margin-bottom: 5px; */ /* Evtl. aus .filter-group übernehmen? */
+  /* font-weight: bold; */ /* Evtl. aus .filter-group übernehmen? */
+}
+.container select {
+  max-width: 100%;
+  padding: 5px;
+}
+.filter-group {
+margin-bottom: 15px;
+border: 1px solid #ccc;
+padding: 10px;
+}
+.filter-group label {
+display: block;
+margin-bottom: 5px;
+font-weight: bold;
+} 
+#filter-output {
+    margin-top: -20px;
+}
+.dok-link { 
+  display: block;
+  margin-bottom: 1px;
+  margin-top: 10px;
+  border: 1px solid #ccc; 
+  background-color: white;
+  width: 30pc;
+  padding: 10px 0px 10px 0px; /*oben rechts unten links */
+  font-size: 1.2rem;
+  text-align: center;
+}
+.dok-button {
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border: 1px solid #ccc; 
+  background-color: white;
+  /*background-color: #5a9772;*/
+  width: 5pc;
+  padding: 5px 0 5px 0;
+  cursor: pointer;
+}
+.dok-button:hover {
+  background: rebeccapurple;
+}
+/* Dokumente hinzufügen */
+.dok-add {
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border: 1px solid #ccc; 
+  background-color: white;
+  width: 25pc;
+  padding: 5px 0 5px 0;
+  cursor: pointer;
+}
+.dok-add:hover {
+  background: rebeccapurple;
+}
+/* Filtergestaltung */
+.comparison-view {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /*Breite: linke Spalte rechte Spalte */
+  gap: 20px;
+  max-width: /*900px*/ 1000px;
+  margin: 0 auto;
+}
+.panel {
+  text-align: center;
+  /*justify-content: center;*/
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 0px 0 0 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* bisher nur für die Filterbearbeitung*/
+/*
+.panel-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eee;
+  color: #2c3e50;
+}
+  */
+/* Filter-Karten */
+.filter-card {
+  background: white;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.filter-name {
+  font-weight: 200;
+  font-size: 20px;
+  color: black;
+  margin-top: -10px;
+}
+/* Options-Darstellung */
+.option-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  padding: 2px 5px 1px 5px;
+  background: #e3e5e8;
+  border-radius: 6px;
+}
+.option-label {
+  font-weight: 500;
+}
+.option-value {
+  font-family: monospace;
+  word-break: break-all;
+}
+/* Buttons */
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+.btn-primary {
+  background: rgb(111, 122, 186);
+  color: white;
+}
+.btn-danger {
+  background-color: grey;
+  color: white;
+  border: 10px;
+  border-radius: 4px;
+}
+
+.btn-success {
+  background: #5a9772;
+  color: white;
+  font-size: medium;
+}
+.btn-addoption {
+  background: rgb(111, 122, 186);
+  color: white;
+  margin-left: 7px;
+}
+.btn-verwerfen {
+  background-color: grey;
+   color: white;
+   border: 10px;
+   border-radius: 4px;
+   margin-left: 16px;
+}
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  background-color: rebeccapurple;
+}
+/* Bearbeitungsbereich */
+.edit-form {
+  display: none;
+  background: #fff;
+  /*padding: 15px;*/
+  padding: 1px;
+  border-radius: 6px;
+  /*margin-top: 15px;*/
+  margin-top: 5px;
+  border: 1px solid #ddd;
+}
+.form-group {
+    margin-bottom: 10px;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+}  
+.form-control {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.panel ul {
+  margin-left: 20px;
+}
+/* Media Query für Bildschirme bis 768px (Tablets und kleinere Desktops), 2 Spalten */
+
+@media (max-width: 768px) {
+  .menu-icon {
+    font-size: 1.5rem;
+  }
+    .submenu button{ 
+    font-size: 1.5rem;
+  }
+  .panel {
+    font-size: 1rem;
+  }
+  .dok-link {
+    align-items: center;
+    font-size: 1rem;
+  }
+  .handbuch {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    font-size: 1.0rem;
+  }
+}
+
+/* Media Query für Bildschirme bis 480px (Mobile), 1 Spalte */
+
+@media (max-width: 480px) {  
+  .menu {
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu-icon {
+    font-size: 2rem;
+  }
+  .menu button {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+  .submenu button{ 
+    font-size: 2rem;
+  }
+  .container {
+    font-size: 1.5rem;
+  }
+  .panel {
+    align-items: center;
+    font-size: 1.3rem;
+  }
+   .dok-link {
+    align-items: center;
+    font-size: 1.3rem;
+  }
+  #filter-wrapper {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
+  }
+ 
+  .handbuch {
+    grid-template-columns: 1fr; 
+    flex-direction: column; 
+    align-items: center;
+  }
+  .handbuchspalten {
+    font-size: 1.5rem;
+  }
+}
+
+.handbuch.active {
+  display: grid;
+}
+.handbuch { 
+  display: none;
+  max-width: 100%;
+  width: 100%; /*Nimmt die verfügbare Breite ein */
+   /* Standard-Layout für breite Bildschirme (3 Spalten) */
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+  /*gap: 5px;*/
+  gap: 0.3rem;
+}
+/* Style für den einzelnen Filter-Block */
+.handbuchspalten {
+  margin-left: 0px;
+  padding: 10px;
+  border: 1px solid #ccc; 
+  background-color: white;
+  max-width: 100%; 
+  background: rgb(247, 241, 241);
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+}
+/* Style für das Label und Select innerhalb des Containers */
+.handbuchspalten label {
+  margin-right: 10px; /* War vorher nur für Select, evtl. anpassen */
+  font-weight: bold;  /* Evtl. aus .filter-group übernehmen? */
+}

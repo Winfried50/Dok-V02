@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dokumente-V02></title>
+<link rel="stylesheet" href="styles.css">
+<script src="indexeddb_manager.js" defer></script>
+
+</head>
+<body>
+    <div class="menu-container">
+        <button class="menu-icon" onclick="toggleSubmenu()">&#9776; Menü</button>
+        <div class="submenu" id="mySubmenu">
+            <button onclick="showContent('home'); toggleSubmenu()">Home</button>
+            <button onclick="showContent('addDokumente'); toggleSubmenu()">Dokumente hinzufügen</button>
+            <button onclick="showContent('restorebackup'); toggleSubmenu()">Restore/Backup</button>
+            <button onclick="showContent('filteredit'); toggleSubmenu()">Filtergestaltung</button>
+            <button onclick="showContent('handbuch'); toggleSubmenu()">Handbuch</button>
+            <button onclick="showContent('impressum'); toggleSubmenu()">Impressum</button>
+            <button onclick="showContent('logout'); toggleSubmenu()">❌ Seite schließen</button>
+        </div>
+    </div>
+    <div class="content active" id="home">
+        <div id="filter-wrapper"></div>
+        <div class="panel" id="filter-output"></div>
+        <div class="panel" id="vorhandeneDokuemnte">
+            <div>
+                <div id="anzdoks"> </div>
+                <label>Ersetzen/Löschen:</label>   
+                <input type="radio" id="optionJa" name="fortfahren" value="ja">
+                <label for="optionJa">Ja</label>
+                <input type="radio" id="optionNein" name="fortfahren" value="nein" checked>
+                <label for="optionNein">Nein</label><br>
+            </div>
+            <div id="itemList"> Links</div>
+        </div>
+    </div>
+    <div class="content" id="addDokumente">
+        <div>
+            <br>
+        </div>
+        <div class="panel">
+            <br>
+            <h3>Dokumente hinzufügen</h3>
+            <br>
+            <input type="file" id="fileInput" class="btn btn-success" multiple>
+            <br>
+            <div id="anzdoksadd"> </div>
+            <div id="dokadd"> </div>
+        </div>
+        <div class="panel" id="backupDokumente" >
+            <br>
+            <div id="anzdoks"> </div>
+            <div id="dokadd"> </div>
+        </div>
+    </div>
+    <div class="content" id="restorebackup">
+        <div>
+            <br>
+        </div>
+        <div class="panel" id="restoreDokumente">
+            <br>
+            <h3>Dokumente</h3>
+            <br>
+            <label><b>Restore</b> - Dokumente laden</label>
+            <br>
+            <input type="file" id="restoreButton" class="btn btn-success" name="Restore">
+            <div id="restoreFile"></div>
+            <br>
+            <label><b>Backup</b> - Dokumente speichern</label>
+            <br>
+            <button id="backup" class="btn btn-success">Backup-Start</button> 
+        </div>
+        <div>
+            <br>
+            <br>
+        </div>
+        <div class="panel">
+            <br>
+            <h3>Filterparameter</h3>
+            <br>
+            <label><b>Restore</b> - Filterparameter laden</label>
+            <br>
+            <input type="file" id="fileinput" class="btn btn-success" name="fileinput" >
+            <pre id="filename"></pre>
+            <br>
+            <label><b>Backup</b> - Filterparameter speichern</label>
+            <br>
+            <button type="button" id="backupfilterparameter" class="btn btn-success" onclick="backupfilterparameter()">Backup-Start</button>
+        </div>
+    </div>
+    <div class="content" id="filteredit">
+        <div class="comparison-view1"> 
+            <!--           
+            <div class="panel">
+                <p class="panel-title">Bisherige Filterparameter</p>
+                <div id="currentFilters"></div>
+            </div>
+            -->            
+            <div class="panel">
+                <!--
+                <p class="panel-title">Geänderte Filterparameter</p>
+                -->
+                <div id="newFilters"></div>
+                <button id="applyChanges" class="btn btn-success" style="margin-top:0px; margin-left: 15px;">Änderungen übernehmen</button>
+                <button id="deleteChanges" class="btn btn-verwerfen" style="margin-top: 0px;">Änderungen verwerfen</button>
+            </div>
+        </div>
+        <div>
+            <br>
+            <h3 style="margin-bottom: -2px;">Backup - Filterparameter in eine Datei speichern</h3>
+            <button type="button" class="btn btn-success" onclick="backupfilterparameter()">Backup-Start</button>
+        </div>
+    </div>
+    <div class="handbuch" id="handbuch">
+        <div class="handbuchspalten"> 
+            <label>Welche Dokumente könnten in dieser APP speichern?</label>
+            <p> alle Dokumente, die Dir wichtig sind z.B.:</p>
+            <li>Personalausweis</li>
+            <li>Gesundheitskarte</li>
+            <li>Führerschein</li>
+            <li>Impfausweis</li>
+            <li>Rentenausweis</li>
+            <li>Geburtsurkunde</li>
+            <li>Eheurkunde</li> 
+            <li>Testament</li>
+            <li>Vorsorgevollmacht</li>
+            <li>Patientenverfügung</li>
+        </div>
+        <div class="handbuchspalten">
+            <label>Speicher der Dokumente</label>
+            <p>Die Dokumente werden ausschließlich lokal gespeichert.</p>
+            <p>Sie werden <b>nicht</b>  über das Internet in einer Cloud gespeichert.</p>
+            <p>Zum Speichern wird eine verschlüsselte DB innerhalb des Browser genutzt.</p>
+            <p>Zum Hinzufügen oder zum Download der Dokumente wird das Verzeichnis "Download" des Handy,
+                 Tablet oder Laptop/PC genutzt.</p>
+        </div>      
+        <div class="handbuchspalten">
+            <label>Bildung der Dateinamen und Filtermöglichkeiten</label>
+            <p>Die Dokumente können als Bild- oder PDF-Dateien vorliegen.</p>
+            <p>Die Bilddateien können die Formate .jpg, .jpeg, .tif oder .png haben.</p>
+            <p>Die Dateinamen sollten nach einem Prinzip aufgebaut sein, nach dem sie leicht filterbar sind.</p>
+            <p>In der APP können 3 Filter frei gestaltet werden:</p>
+            <p>Der 1. Filter kann die Dokumenten-Art, der 2. Filter kann den Namen und der 3.Filter kann das Dateiformat beinhalten.</p>
+        </div>
+        <div class="handbuchspalten">
+            <label>Beispiele zur Bildung der Dateinamen und ein Beispiel zur Gestaltung der Filter</label>
+            <li>Personalausweis_Frontseite_Winfried.jpg </li>
+            <li>Personalausweis_Rückseite_Winfried.jpg </li>
+            <li>Personalausweis_Frontseite_Sigrid.jpg </li>
+            <li>Personalausweis_Rückseite_Sigrid.jpg </li>
+            <li>Urkunde-Testtament-Sigrid-Winfried.jpg</li>
+            <li>Vorsorge-Patientenverf.-Winfried-S1.pdf</li>
+        </div>
+        <div class="handbuchspalten">
+            <label>Beispiel zur Gestaltung des 1.Filters "Dokumenten-Art"</label>
+            <li>alle anzeigen</li>
+            <li>Ausweis</li>
+            <li>Auto</li> 
+            <li>Urkunde</li>
+            <li>Vorsorge</li>
+        </div>
+        <div class="handbuchspalten">
+            <label>Beispiel zur Gestaltung des 2.Filters "Personen"</label>
+            <li>alle anzeigen</li>
+            <li>Winfried</li>
+            <li>Sigrid</li> 
+        </div>
+        <div class="handbuchspalten">
+            <label>Beispiel zur Gestaltung des 3.Filters "Dokumenten-Format"</label>
+            <li>alle anzeigen</li>
+            <li>pdf</li>
+            <li>jpg</li> 
+            <li>jpeg</li>
+            <li>tif</li>
+            <li>png</li>
+        </div>
+        <div class="handbuchspalten">
+            <label>Filter bei der Installation</label>
+            <p>Bei der Installation der App wird eine Basisvariante der Filter bereitgestellt.
+                 Sie entspricht zum Teil den zuvor beschriebenen Beispielen.
+            </p>
+            <p>Diese Basisvariante sollte direkt nach der Installation bearbeitet,
+                 d.h. persönlich angepasst werden.</p>
+            <p>Anschließend sollte ein Backup der Filterparameter erfolgen.
+                 Damit wird eine Sicherungsdatei der Filterparameter erstellt
+                  und zugleich werden die Filterparameter im Browser gespeichert.</p>     
+        </div>
+        <div class="handbuchspalten">
+            <label>Menüpunkt "Home"</label>
+            <p>Es werden alle vorhandenen Dokumente angezeigt.
+                 Über die Filterauswahl kann die Anzahl der angezeigten Dokumente eingeschränkt werden. 
+                 Mit einem Klick auf den Namen des Dokumentes wird das Dokument angezeigt.
+                 Mit Klick auf "Download" wird das Dokument als einzelne Datei gespeichert und könnte gesendet oder gedruckt werden.
+                </p>
+            <br>
+            <p>Wenn ein Dokument ersetzt bzw. gelöscht werden soll,
+                 dann muss zuvor "Ersertzen/Löschen" auf "Ja" gesetzt werden. </p>     
+        </div>
+        <div class="handbuchspalten">
+            <label>Menüpunkt "Dokumente hinzufügen"</label>
+            <p>In diesem Menüpunkt können ein bzw. mehrere Dokumente hinzugefügt werden.
+                 Achte darauf, dass die Dateinamen der Dokumente deinem Filterprinzip entsprechen.
+            </p>
+        </div>
+        <div class="handbuchspalten">
+            <label>Menüpunkt "Restore/Backup"</label>
+            <p>In diesem Menüpunkt können die Dokumente bzw. die Filterparameter 
+                 aus einer zuvor erstellten Backup-Datei eingelesen werden (Restore).</p>
+            <p>Dies kann notwendig werden, wenn der Cach-Speicher des Browser gelöscht wurde.</p>
+            <br>
+            <p>Eine Backup-Datei der Dokumente sollte erstellt werden,
+                 wenn ein bzw. mehrere Dokumente hinzugefügt, ersetzt oder gelöscht wurden.</p>
+            <p>Eine backup-Datei der Filterparameter sollte erstellt werden,
+                 wenn ein bzw. mehrere Filter hinzugefügt, geändert oder gelöscht wurden.</p>   
+        </div>
+        <div class="handbuchspalten">
+            <label>Menüpunkt "Filterbearbeitung"</label>
+            <p>In diesem Menüpunkt können die Filterparameter bearbeitet werden.</p>
+            <p>Zu jeder Filteroption gibt es 2 Zeilen: "Anzeigename" und "Filtertext".</p>
+            <p>Der Text "Anzeigename" wird bei der Filterauswahl angezeigt.</p>
+            <p>Der "Filtertext" soll den Suchtext innerhalb des Dateinamens beinhalten.
+                 Ein Dokument wird nur angezeigt, wenn dieser Text ein Teil des Dateinamens ist.   
+            </p>
+            <p>Wenn alle Dokumente angezeigt werden sollen "alle anzeigen",
+                 dann muss der Filtertext leer bleiben.
+            </p>  
+        </div>
+    </div>
+    <div class="handbuch"  id="impressum">
+        <div class="handbuchspalten">
+            <br>
+            <label>Impressum-V02</label>
+            <p>Winfried Grimm</p>
+            <p>grimm50@gmx.de</p>
+        </div>
+    </div>
+    
+
+  <script src="Hauptverarbeitung.js"></script>
+  <script src="backup-restore.js"></script>  
+  <script src="Filter3-Radio.js"></script>
+  <script src="Filter2-Radio.js"></script>
+  <script src="Filter1-Selekt.js"></script>
+  <script src="Filter-Edit.js"></script>
+  
+</body>
+
+</html>
