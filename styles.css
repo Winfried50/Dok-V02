@@ -405,7 +405,8 @@ font-weight: bold;
   max-width: 100%;
   width: 100%; /*Nimmt die verfügbare Breite ein */
    /* Standard-Layout für breite Bildschirme (3 Spalten) */
-  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); 
+  /*bisher grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));*/ 
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   /*gap: 5px;*/
   gap: 0.3rem;
 }
