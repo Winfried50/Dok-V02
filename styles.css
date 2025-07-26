@@ -335,10 +335,10 @@ font-weight: bold;
 
 @media (max-width: 768px) {
   .menu-icon {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
     .submenu button{ 
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .panel {
     font-size: 1rem;
@@ -361,25 +361,25 @@ font-weight: bold;
     align-items: center;
   }
   .menu-icon {
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .menu button {
     width: 100%;
     margin-bottom: 5px;
   }
   .submenu button{ 
-    font-size: 2rem;
+    font-size: 1rem;
   }
   .container {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .panel {
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
    .dok-link {
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
   #filter-wrapper {
     grid-template-columns: 1fr;
@@ -393,7 +393,7 @@ font-weight: bold;
     align-items: center;
   }
   .handbuchspalten {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
 }
 
