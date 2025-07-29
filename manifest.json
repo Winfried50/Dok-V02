@@ -9,12 +9,12 @@
     {
       "src": "img/buch-192x192.ico",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/ico"
     },
     {
       "src": "img/buch-512x512.ico",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/ico"
     }
   ]
 }

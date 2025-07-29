@@ -15,7 +15,7 @@ self.addEventListener('install', function(event) {
         'indexeddb_manager.js',
         'manifest.json',
         'sw.js',
-        'Verarbeitung.js'
+        'Hauptverarbeitung.js'
         // weitere Ressourcen
       ]);
     })
